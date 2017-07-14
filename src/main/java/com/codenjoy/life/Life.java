@@ -7,9 +7,15 @@ public class Life {
     private boolean[][] field;
     private int size;
 
-    public Life(int size) {
+    public Life(String stringField) {
+        this.size = (int)Math.sqrt(stringField.length());
         field = new boolean[size][size];
-        this.size = size;
+        for (int l = 0; l < stringField.length(); l++) {
+            int x = l % size;
+            int y = size - 1 - l / size;
+
+            field[x][y] = (stringField.charAt(l) == '+');
+        }
     }
 
     public void tick() {

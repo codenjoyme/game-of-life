@@ -12,7 +12,11 @@ public class LifeTest {
     @Test
     public void shouldEmptyField_whenNoLife() {
         // given
-        Life life = new Life(4);
+        Life life = new Life(
+                "...." +
+                "...." +
+                "...." +
+                "....");
 
         // when
         life.tick();
@@ -23,6 +27,25 @@ public class LifeTest {
                 "...." +
                 "...." +
                 "...."
+                , life.toString());
+    }
+
+    @Test
+    public void shouldDie_whenAlone() {
+        // given
+        Life life = new Life(
+                "..." +
+                "..." +
+                "...");
+
+        // when
+        life.tick();
+
+        // then
+        assertEquals(
+                "..." +
+                "..." +
+                "..."
                 , life.toString());
     }
 }
