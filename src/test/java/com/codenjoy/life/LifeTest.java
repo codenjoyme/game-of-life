@@ -35,7 +35,7 @@ public class LifeTest {
         // given
         Life life = new Life(
                 "..." +
-                "..." +
+                ".+." +
                 "...");
 
         // when
