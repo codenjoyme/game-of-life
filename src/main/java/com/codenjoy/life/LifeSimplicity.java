@@ -29,16 +29,19 @@ public class LifeSimplicity implements Life {
 
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
-                int count = countNeighbours(x, y);
-                if (field[x][y]) {
-                    newField[x][y] = (count >= 2 && count <= 3);
-                } else {
-                    newField[x][y] = (count == 3);
-                }
+                nextGeneration(newField, x, y, countNeighbours(x, y));
             }
         }
 
         field = newField;
+    }
+
+    private void nextGeneration(boolean[][] newField, int x, int y, int count) {
+        if (field[x][y]) {
+            newField[x][y] = (count >= 2 && count <= 3);
+        } else {
+            newField[x][y] = (count == 3);
+        }
     }
 
     private int countNeighbours(int x, int y) {
@@ -73,7 +76,6 @@ public class LifeSimplicity implements Life {
         for (int l = 0; l < size*size; l++) {
             result.append(isAlive(l) ? "+" : ".");
         }
-
         return result.toString();
     }
 
