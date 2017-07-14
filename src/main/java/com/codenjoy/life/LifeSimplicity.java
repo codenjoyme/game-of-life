@@ -6,21 +6,21 @@ package com.codenjoy.life;
  * Every method has maximum 4 lines of code in it’s body
  */
 public class LifeSimplicity implements Life {
+    private final XY xy;
     private boolean[][] field;
     private int size;
 
     public LifeSimplicity(String stringField) {
         this.size = (int)Math.sqrt(stringField.length());
+        this.xy = new XY(size);
         field = new boolean[size][size];
         parseString(stringField);
     }
 
-    private void parseString(String stringField) {
-        for (int l = 0; l < stringField.length(); l++) {
-            int x = l % size;
-            int y = size - 1 - l / size;
-
-            field[x][y] = (stringField.charAt(l) == '+');
+    private void parseString(String field) {
+        int length = field.length();
+        for (int l = 0; l < length; l++) {
+            this.field[xy.getX(l)][xy.getY(l)] = (field.charAt(l) == '+');
         }
     }
 
