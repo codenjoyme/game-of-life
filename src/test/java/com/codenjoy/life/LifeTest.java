@@ -7,12 +7,14 @@ import static org.junit.Assert.*;
 /**
  * Created by Oleksandr_Baglai on 2017-07-14.
  */
-public class LifeTest {
+public abstract class LifeTest {
+
+    abstract Life getLife(String field);
 
     @Test
     public void shouldEmptyField_whenNoLife() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 "...." +
                 "...." +
                 "...." +
@@ -33,7 +35,7 @@ public class LifeTest {
     @Test
     public void shouldDie_whenAlone() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 "..." +
                 ".+." +
                 "...");
@@ -52,7 +54,7 @@ public class LifeTest {
     @Test
     public void shouldDie_whenOneNeighbour() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 "..." +
                 ".++" +
                 "...");
@@ -71,7 +73,7 @@ public class LifeTest {
     @Test
     public void shouldStillAlive_whenTwoNeighbours_andBorn_whenThree() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 "..." +
                 ".++" +
                 "..+");
@@ -90,7 +92,7 @@ public class LifeTest {
     @Test
     public void shouldDie_whenMoteThanThreeNeighbours() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 ".+." +
                 "+++" +
                 ".+.");
@@ -109,7 +111,7 @@ public class LifeTest {
     @Test
     public void shouldCaseI() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 ".+." +
                 ".+." +
                 ".+.");
@@ -138,7 +140,7 @@ public class LifeTest {
     @Test
     public void shouldCaseO() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 ".+.." +
                 "+.+." +
                 "+.+." +
@@ -159,7 +161,7 @@ public class LifeTest {
     @Test
     public void shouldCaseShip() {
         // given
-        Life life = new Life(
+        Life life = getLife(
                 "+.+..." +
                 ".++..." +
                 ".+...." +
