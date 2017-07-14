@@ -11,16 +11,15 @@ public class LifeSimplicity implements Life {
     private int size;
 
     public LifeSimplicity(String stringField) {
-        this.size = (int)Math.sqrt(stringField.length());
-        this.xy = new XY(size);
+        size = (int)Math.sqrt(stringField.length());
+        xy = new XY(size);
         field = new boolean[size][size];
         parseString(stringField);
     }
 
-    private void parseString(String field) {
-        int length = field.length();
-        for (int l = 0; l < length; l++) {
-            this.field[xy.getX(l)][xy.getY(l)] = (field.charAt(l) == '+');
+    private void parseString(String string) {
+        for (int l = 0; l < string.length(); l++) {
+            this.field[xy.getX(l)][xy.getY(l)] = (string.charAt(l) == '+');
         }
     }
 
