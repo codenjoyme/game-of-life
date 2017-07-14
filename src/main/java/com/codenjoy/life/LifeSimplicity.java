@@ -22,22 +22,22 @@ public class LifeSimplicity implements Life {
 
     private void parseString(String string) {
         for (int l = 0; l < string.length(); l++)
-            field.init(xy.getX(l), xy.getY(l), (string.charAt(l) == ALIVE));
+            field.cell(xy.getX(l), xy.getY(l)).init(string.charAt(l) == ALIVE);
     }
 
     @Override
     public void tick() {
         for (int x = 0; x < size; x++)
             for (int y = 0; y < size; y++)
-                nextGeneration(x, y, countNeighbours(x, y));
+                nextGeneration(field.cell(x, y), countNeighbours(x, y));
         field.replace();
     }
 
-    private void nextGeneration(int x, int y, int count) {
-        if (field.isAlive(x, y))
-            field.born(x, y, (count >= 2 && count <= 3));
+    private void nextGeneration(Cell cell, int count) {
+        if (cell.isAlive())
+            cell.born(count >= 2 && count <= 3);
         else
-            field.born(x, y, (count == 3));
+            cell.born(count == 3);
     }
 
     private int countNeighbours(int x, int y) {
@@ -52,7 +52,7 @@ public class LifeSimplicity implements Life {
     private boolean isAlive(int x, int y) {
         if (ifOutOf(x) || ifOutOf(y))
             return false;
-        return field.isAlive(x, y);
+        return field.cell(x, y).isAlive();
     }
 
     private boolean ifOutOf(int a) {
@@ -68,6 +68,6 @@ public class LifeSimplicity implements Life {
     }
 
     private boolean isAlive(int length) {
-        return field.isAlive(xy.getX(length), xy.getY(length));
+        return field.cell(xy.getX(length), xy.getY(length)).isAlive();
     }
 }

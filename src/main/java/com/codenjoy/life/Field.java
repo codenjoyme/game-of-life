@@ -19,15 +19,32 @@ public class Field {
         current++;
     }
 
-    public void init(int x, int y, boolean cell) {
-        field(0)[x][y] = cell;
+    private class CellImpl implements Cell {
+        private int x;
+        private int y;
+
+        public CellImpl(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean isAlive() {
+            return field(0)[x][y];
+        }
+
+        @Override
+        public void init(boolean alive) {
+            field(0)[x][y] = alive;
+        }
+
+        @Override
+        public void born(boolean alive) {
+            field(1)[x][y] = alive;
+        }
     }
 
-    public void born(int x, int y, boolean cell) {
-        field(1)[x][y] = cell;
-    }
-
-    public boolean isAlive(int x, int y) {
-        return field(0)[x][y];
+    public Cell cell(int x, int y) {
+        return this.new CellImpl(x, y);
     }
 }
