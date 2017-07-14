@@ -6,6 +6,9 @@ package com.codenjoy.life;
  * Every method has maximum 4 lines of code in it’s body
  */
 public class LifeSimplicity implements Life {
+    public static final char ALIVE = '+';
+    public static final char EMPTY = '.';
+
     private XY xy;
     private Field field;
     private int size;
@@ -19,7 +22,7 @@ public class LifeSimplicity implements Life {
 
     private void parseString(String string) {
         for (int l = 0; l < string.length(); l++)
-            field.init(xy.getX(l), xy.getY(l), (string.charAt(l) == '+'));
+            field.init(xy.getX(l), xy.getY(l), (string.charAt(l) == ALIVE));
     }
 
     @Override
@@ -60,7 +63,7 @@ public class LifeSimplicity implements Life {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (int l = 0; l < size*size; l++)
-            result.append(isAlive(l) ? "+" : ".");
+            result.append(isAlive(l) ? ALIVE : EMPTY);
         return result.toString();
     }
 
