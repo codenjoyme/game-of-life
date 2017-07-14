@@ -44,16 +44,10 @@ public class LifeSimplicity implements Life {
 
     private int countNeighbours(int x, int y) {
         int result = 0;
-        for (int xx = -1; xx <= 1; xx++) {
-            for (int yy = -1; yy <= 1; yy++) {
-                if (xx == 0 && yy == 0) {
-                    continue;
-                }
-                if (isAlive(x + xx, y + yy)) {
+        for (int xx = -1; xx <= 1; xx++)
+            for (int yy = -1; yy <= 1; yy++)
+                if ((xx != 0 || yy != 0) && isAlive(x + xx, y + yy))
                     result++;
-                }
-            }
-        }
         return result;
     }
 
