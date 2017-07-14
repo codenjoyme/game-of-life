@@ -25,14 +25,10 @@ public class Life {
             for (int y = 0; y < size; y++) {
                 int count = countNeighbours(x, y);
                 if (field[x][y]) {
-                    if (count == 0) {
-                        newField[x][y] = false;
-                    } else if (count == 1) {
-                        newField[x][y] = false;
-                    } else if (count == 2) {
+                    if (count >= 2 && count <= 3) {
                         newField[x][y] = true;
                     } else {
-                        newField[x][y] = true;
+                        newField[x][y] = false;
                     }
                 } else {
                     if (count == 3) {
