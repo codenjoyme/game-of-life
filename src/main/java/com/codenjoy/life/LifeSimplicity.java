@@ -70,12 +70,14 @@ public class LifeSimplicity implements Life {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int y = size - 1; y >= 0; y--) {
-            for (int x = 0; x < size; x++) {
-                result.append((field[x][y]) ? "+" : ".");
-            }
+        for (int l = 0; l < size*size; l++) {
+            result.append(isAlive(l) ? "+" : ".");
         }
 
         return result.toString();
+    }
+
+    private boolean isAlive(int length) {
+        return field[xy.getX(length)][xy.getY(length)];
     }
 }
