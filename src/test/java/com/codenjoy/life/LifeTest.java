@@ -105,4 +105,33 @@ public class LifeTest {
                 "+++"
                 , life.toString());
     }
+
+    @Test
+    public void shouldCaseI() {
+        // given
+        Life life = new Life(
+                ".+." +
+                ".+." +
+                ".+.");
+
+        // when
+        life.tick();
+
+        // then
+        assertEquals(
+                "..." +
+                "+++" +
+                "..."
+                , life.toString());
+
+        // when
+        life.tick();
+
+        // then
+        assertEquals(
+                ".+." +
+                ".+." +
+                ".+."
+                , life.toString());
+    }
 }
