@@ -24,10 +24,13 @@ public class Life {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 if (field[x][y]) {
-                    if (hasNeighbours(x, y)) {
-                        newField[x][y] = true;
-                    } else {
+                    int count = countNeighbours(x, y);
+                    if (count == 0) {
                         newField[x][y] = false;
+                    } else if (count == 1) {
+                        newField[x][y] = false;
+                    } else {
+                        newField[x][y] = true;
                     }
                 }
             }
@@ -36,18 +39,19 @@ public class Life {
         field = newField;
     }
 
-    private boolean hasNeighbours(int x, int y) {
+    private int countNeighbours(int x, int y) {
+        int result = 0;
         for (int xx = -1; xx < 1; xx++) {
             for (int yy = -1; yy < 1; yy++) {
                 if (xx == 0 && yy == 0) {
                     continue;
                 }
                 if (isAlive(x + xx, y + yy)) {
-                    return true;
+                    result++;
                 }
             }
         }
-        return false;
+        return result;
     }
 
     private boolean isAlive(int x, int y) {
