@@ -67,4 +67,23 @@ public class LifeTest {
                 "..."
                 , life.toString());
     }
+
+    @Test
+    public void shouldStillAlive_whenTwoNeighbours() {
+        // given
+        Life life = new Life(
+                "..." +
+                ".++" +
+                "..+");
+
+        // when
+        life.tick();
+
+        // then
+        assertEquals(
+                "..." +
+                ".++" +
+                "..+"
+                , life.toString());
+    }
 }

@@ -29,6 +29,8 @@ public class Life {
                         newField[x][y] = false;
                     } else if (count == 1) {
                         newField[x][y] = false;
+                    } else if (count == 2) {
+                        newField[x][y] = true;
                     } else {
                         newField[x][y] = true;
                     }
@@ -41,8 +43,8 @@ public class Life {
 
     private int countNeighbours(int x, int y) {
         int result = 0;
-        for (int xx = -1; xx < 1; xx++) {
-            for (int yy = -1; yy < 1; yy++) {
+        for (int xx = -1; xx <= 1; xx++) {
+            for (int yy = -1; yy <= 1; yy++) {
                 if (xx == 0 && yy == 0) {
                     continue;
                 }
@@ -55,7 +57,7 @@ public class Life {
     }
 
     private boolean isAlive(int x, int y) {
-        if (ifOutOf(x) || ifOutOf(x)) {
+        if (ifOutOf(x) || ifOutOf(y)) {
             return false;
         }
         return field[x][y];
