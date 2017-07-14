@@ -134,4 +134,25 @@ public class LifeTest {
                 ".+."
                 , life.toString());
     }
+
+    @Test
+    public void shouldCaseO() {
+        // given
+        Life life = new Life(
+                ".+.." +
+                "+.+." +
+                "+.+." +
+                ".+..");
+
+        // when
+        life.tick();
+
+        // then
+        assertEquals(
+                ".+.." +
+                "+.+." +
+                "+.+." +
+                ".+..",
+                life.toString());
+    }
 }
