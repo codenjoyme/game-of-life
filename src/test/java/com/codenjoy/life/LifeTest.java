@@ -69,7 +69,7 @@ public class LifeTest {
     }
 
     @Test
-    public void shouldStillAlive_whenTwoNeighbours() {
+    public void shouldStillAlive_whenTwoNeighbours_andBorn_whenThree() {
         // given
         Life life = new Life(
                 "..." +
@@ -83,7 +83,7 @@ public class LifeTest {
         assertEquals(
                 "..." +
                 ".++" +
-                "..+"
+                ".++"
                 , life.toString());
     }
 }

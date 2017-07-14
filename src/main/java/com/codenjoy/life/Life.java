@@ -23,8 +23,8 @@ public class Life {
 
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
+                int count = countNeighbours(x, y);
                 if (field[x][y]) {
-                    int count = countNeighbours(x, y);
                     if (count == 0) {
                         newField[x][y] = false;
                     } else if (count == 1) {
@@ -32,6 +32,10 @@ public class Life {
                     } else if (count == 2) {
                         newField[x][y] = true;
                     } else {
+                        newField[x][y] = true;
+                    }
+                } else {
+                    if (count == 3) {
                         newField[x][y] = true;
                     }
                 }
