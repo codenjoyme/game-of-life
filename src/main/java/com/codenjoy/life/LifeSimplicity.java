@@ -6,25 +6,20 @@ package com.codenjoy.life;
  * Every method has maximum 4 lines of code in it’s body
  */
 public class LifeSimplicity implements Life {
-    private final XY xy;
-    private boolean[][][] field;
+    private XY xy;
+    private Field field;
     private int size;
-    private int current = 0;
 
     public LifeSimplicity(String stringField) {
         size = (int)Math.sqrt(stringField.length());
         xy = new XY(size);
-        field = new boolean[2][size][size];
+        field = new Field(size);
         parseString(stringField);
     }
 
     private void parseString(String string) {
         for (int l = 0; l < string.length(); l++)
-            field(0)[xy.getX(l)][xy.getY(l)] = (string.charAt(l) == '+');
-    }
-
-    public boolean[][] field(int main) {
-        return field[(current + main) % 2];
+            field.init(xy.getX(l), xy.getY(l), (string.charAt(l) == '+'));
     }
 
     @Override
@@ -32,14 +27,14 @@ public class LifeSimplicity implements Life {
         for (int x = 0; x < size; x++)
             for (int y = 0; y < size; y++)
                 nextGeneration(x, y, countNeighbours(x, y));
-        current++;
+        field.replace();
     }
 
     private void nextGeneration(int x, int y, int count) {
-        if (field(0)[x][y])
-            field(1)[x][y] = (count >= 2 && count <= 3);
+        if (field.isAlive(x, y))
+            field.born(x, y, (count >= 2 && count <= 3));
         else
-            field(1)[x][y] = (count == 3);
+            field.born(x, y, (count == 3));
     }
 
     private int countNeighbours(int x, int y) {
@@ -54,7 +49,7 @@ public class LifeSimplicity implements Life {
     private boolean isAlive(int x, int y) {
         if (ifOutOf(x) || ifOutOf(y))
             return false;
-        return field(0)[x][y];
+        return field.isAlive(x, y);
     }
 
     private boolean ifOutOf(int a) {
@@ -70,6 +65,6 @@ public class LifeSimplicity implements Life {
     }
 
     private boolean isAlive(int length) {
-        return field(0)[xy.getX(length)][xy.getY(length)];
+        return field.isAlive(xy.getX(length), xy.getY(length));
     }
 }
