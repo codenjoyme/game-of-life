@@ -2,6 +2,8 @@ package com.codenjoy.life;
 
 /**
  * Created by Oleksandr_Baglai on 2017-07-14.
+ *
+ * Every method has maximum 4 lines of code in it’s body
  */
 public class LifeSimplicity implements Life {
     private boolean[][] field;
@@ -10,6 +12,10 @@ public class LifeSimplicity implements Life {
     public LifeSimplicity(String stringField) {
         this.size = (int)Math.sqrt(stringField.length());
         field = new boolean[size][size];
+        parseString(stringField);
+    }
+
+    private void parseString(String stringField) {
         for (int l = 0; l < stringField.length(); l++) {
             int x = l % size;
             int y = size - 1 - l / size;
